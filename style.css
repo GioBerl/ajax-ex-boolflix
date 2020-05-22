@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+header {
+    background-color: grey;
+    width: 100%;
+    height: 100px;
+    /* position: fixed; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+main#results {
+}
+
+.card-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border: 1px solid red;
+    text-align: center;
+}
+
+ul {
+    color: white;
+    list-style: none;
+    margin: 20px;
+    border: 1px solid white;
+}
+
+li {
+    border-bottom: 1px solid white;
+}
