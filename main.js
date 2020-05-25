@@ -64,7 +64,8 @@ $(document).ready(function () {
             var context = {
                 title: infos.title,
                 orTitle: infos.original_title,
-                orLanguage: infos.original_language,
+                // orLanguage: infos.original_language,
+                orLanguage: createFlag(infos.original_language),
                 averageVote: infos.vote_average,
                 stars: createStars(infos.vote_average),
             };
@@ -78,6 +79,23 @@ $(document).ready(function () {
             //e li aggiungo al main
             $(".card-list").append(htmlCard);
         });
+    }
+
+    function createFlag(lang) {
+        //costruisco una lista di linguaggi preimpostati corrispondenti alle immagini
+        var langList = ["it", "en", "fr", "de"];
+        // controllo se la lingua del film e' presente in questa lista
+        //prova uso ternary operator
+        var imgFlag = langList.includes(lang)
+            ? `<img src="img/flag_${lang}.png" />`
+            : lang;
+        // sarebbe come scrivere:
+        // if (langList.includes(lang)) {
+        //     return `<img src="img/flag_${lang}.png" />`
+        // } else {
+        //     return lang
+        // }
+        return imgFlag;
     }
 
     function createStars(num) {
