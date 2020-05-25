@@ -37,3 +37,13 @@ ul {
 li {
     border-bottom: 1px solid white;
 }
+
+.title-search {
+    color: white;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.title-search.visible {
+    display: block;
+}

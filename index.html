@@ -17,9 +17,29 @@
                 <button id="search-button">Search</button>
             </div>
         </header>
+        <h2 class="title-search">
+            Risultati ricerca per: "<span id="ricerca-utente"></span>"
+        </h2>
         <main id="results">
             <div class="card-list"></div>
         </main>
+
         <script src="main.js"></script>
+        <script id="card-template" type="text/x-handlebars-template">
+            <ul class="single-list">
+                <li>
+                    {{title}}
+                </li>
+                <li>
+                    {{orTitle}}
+                </li>
+                <li>
+                    {{orLanguage}}
+                </li>
+                <li>
+                    {{averageVote}}
+                </li>
+            </ul>
+        </script>
     </body>
 </html>
