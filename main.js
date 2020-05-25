@@ -26,6 +26,8 @@ $(document).ready(function () {
         if ($("input#search-text").val().trim()) {
             //pulisco il main nel caso avessi gia' effettuato una richiesta
             clearMain();
+            // nascondo il titolo della pagina
+            $(".title-search").removeClass("visible");
             //leggo il valore dell'input e lo uso nella query della request
             var film = $("input#search-text").val();
             $.ajax({
@@ -64,15 +66,32 @@ $(document).ready(function () {
                 orTitle: infos.original_title,
                 orLanguage: infos.original_language,
                 averageVote: infos.vote_average,
+                stars: createStars(infos.vote_average),
             };
+
+            //se i due titoli sono uguali metto un segno a orTitle per indicare che e' uguale a title
             if (context.title == context.orTitle) {
-                //metto un segno a orTitle per indicare che e' uguale a title
                 context.orTitle = `"`;
             }
-            //li compilo
+            //compilo il tutto
             var htmlCard = templateFunc(context);
             //e li aggiungo al main
             $(".card-list").append(htmlCard);
         });
+    }
+
+    function createStars(num) {
+        //trasformo il voto da 1 a 10 in un numero da uno a 5 arrotondando per eccesso
+        var ceilNumber = Math.ceil(num / 2);
+        var starsIcon = "";
+        if (num == 0) {
+            starsIcon += '<i class="far fa-star"></i>';
+        } else {
+            for (var i = 0; i < ceilNumber; i++) {
+                starsIcon += '<i class="fas fa-star"></i>';
+            }
+        }
+
+        return starsIcon;
     }
 });

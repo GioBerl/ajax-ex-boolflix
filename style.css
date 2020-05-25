@@ -20,7 +20,7 @@ header {
 
 .card-list {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
     border: 1px solid red;
     text-align: center;
@@ -46,4 +46,8 @@ li {
 
 .title-search.visible {
     display: block;
+}
+
+i {
+    color: white;
 }
