@@ -3,12 +3,14 @@ $(document).ready(function () {
     var templateFunc = Handlebars.compile(source);
     $("#search-button").click(function () {
         sendRequest();
+        sendRequestTv();
         clearInput();
     });
 
     $("input#search-text").keyup(function (event) {
         if (event.key == "Enter") {
             sendRequest();
+            sendRequestTv();
             clearInput();
         }
     });
@@ -57,13 +59,45 @@ $(document).ready(function () {
         }
     }
 
+    function sendRequestTv() {
+        //mi assicuro che ci sia scritto qualcosa nell'input
+        if ($("input#search-text").val().trim()) {
+            // //pulisco il main nel caso avessi gia' effettuato una richiesta
+            // clearMain();
+            // // nascondo il titolo della pagina
+            // $(".title-search").removeClass("visible");
+            //leggo il valore dell'input e lo uso nella query della request
+            var tv = $("input#search-text").val();
+            $.ajax({
+                method: "GET",
+                url: "https://api.themoviedb.org/3/search/tv",
+                data: {
+                    api_key: "da57a6e390d49d195b53f218c7690a55",
+                    query: tv,
+                    language: "it",
+                },
+                success: function (response) {
+                    // salvo l'array di dati di ritorno
+                    var results = response.results; //[{...},{...},{...}...]
+                    //passo i risultati alla funzione cicleAndPrint che si occupa di ciclare l'array e stampare le singole liste
+                    cicleAndPrint(results);
+                },
+                error: function () {
+                    alert("errore");
+                },
+            });
+        } else {
+            alert("inserisci almeno un carattere");
+        }
+    }
+
     function cicleAndPrint(risultati) {
         //preparo i dati per il template
         risultati.forEach(function (infos) {
             //recupero i dati di ogni elemento dell'array
             var context = {
-                title: infos.title,
-                orTitle: infos.original_title,
+                title: infos.title || infos.name,
+                orTitle: infos.original_title || infos.orignal_name,
                 // orLanguage: infos.original_language,
                 orLanguage: createFlag(infos.original_language),
                 averageVote: infos.vote_average,
