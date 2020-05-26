@@ -52,6 +52,11 @@ i {
     color: white;
 }
 
-img {
+img.flag {
     height: 20px;
+}
+
+img.not-available {
+    width: 185px;
+    height: 278px;
 }
