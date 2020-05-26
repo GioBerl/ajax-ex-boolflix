@@ -96,8 +96,11 @@ $(document).ready(function () {
         risultati.forEach(function (infos) {
             //recupero i dati di ogni elemento dell'array
             var context = {
-                title: infos.title || infos.name,
-                orTitle: infos.original_title || infos.orignal_name,
+                title: infos.title ? infos.title : infos.name,
+                orTitle: infos.original_title
+                    ? infos.original_title
+                    : infos.original_name,
+
                 // orLanguage: infos.original_language,
                 orLanguage: createFlag(infos.original_language),
                 averageVote: infos.vote_average,
