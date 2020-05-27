@@ -2,7 +2,8 @@ $(document).ready(function () {
     var apiKey = "da57a6e390d49d195b53f218c7690a55";
     var baseUrl = "https://api.themoviedb.org/3/";
 
-    var imgUrl = "https://image.tmdb.org/t/p/w185";
+    var imgUrl = "https://image.tmdb.org/t/p/";
+    var dimImg = "w185";
 
     var source = $("#card-template").html();
     var templateFunc = Handlebars.compile(source);
@@ -82,6 +83,8 @@ $(document).ready(function () {
         }
     }
 
+    // !FUNZIONI
+
     function cicleAndPrint(risultati) {
         //preparo i dati per il template
         risultati.forEach(function (infos) {
@@ -99,8 +102,10 @@ $(document).ready(function () {
                 stars: createStars(infos.vote_average),
                 type: infos.title ? "film" : "serie",
                 poster: infos.poster_path
-                    ? imgUrl + infos.poster_path
-                    : "img/img-not-available.png",
+                    ? imgUrl + dimImg + infos.poster_path
+                    : `img/img-not-available.png`,
+
+                // actors: getActors(infos.id),
             };
 
             //se i due titoli sono uguali metto un segno a orTitle per indicare che e' uguale a title
@@ -113,6 +118,39 @@ $(document).ready(function () {
             $(".card-list").append(htmlCard);
         });
     }
+
+    // function getActors(id) {
+    //     //PER GLI ATTORI
+    //     $.ajax({
+    //         method: "GET",
+    //         url: baseUrl + `movie/${id}`,
+    //         data: {
+    //             api_key: apiKey,
+    //             append_to_response: "credits",
+    //         },
+    //         success: function (response) {
+    //             // salvo l'array di dati di ritorno
+    //             var results = response.credits.cast; //[{...},{...},{...}...]
+    //             for (var i = 0; i < 5; i++) {
+    //                 console.log(results[i].name);
+    //             }
+    //             console.log("------------");
+    //         },
+    //         error: function () {
+    //             console.log("errore");
+    //         },
+    //     });
+    // }
+
+    // function seeActors(actorsList) {
+    //     // actorsList.forEach(function (actor) {
+    //     //     console.log(actor.name);
+    //     // });
+    //     console.log(actorsList);
+    //     for (var i = 0; i < 5; i++) {
+    //         console.log(actorsList[i].name);
+    //     }
+    // }
 
     function createFlag(lang) {
         //costruisco una lista di linguaggi preimpostati corrispondenti alle immagini
@@ -140,4 +178,15 @@ $(document).ready(function () {
         }
         return starsIcon;
     }
+
+    $(document)
+        .on("mouseenter", ".single-list", function () {
+            $(this).find(".poster-container").fadeOut();
+        })
+        .on("mouseleave", ".single-list", function () {
+            $(this).find(".poster-container").fadeIn();
+        });
+    // $(document).on("mouseenter", ".single-list", function () {
+    //     $(this).hide();
+    // });
 });

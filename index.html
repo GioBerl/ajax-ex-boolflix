@@ -25,61 +25,37 @@
             Risultati ricerca per: "<span id="ricerca-utente"></span>"
         </h2>
         <main id="results">
-            <div class="card-list">
-                <!-- for test only -->
-                <ul class="single-list">
-                    <li>
-                        titolo
-                    </li>
-                    <li>
-                        original title
-                    </li>
-                    <li>
-                        <img class="flag" src="img/flag_it.png" />
-                    </li>
-                    <li>
-                        5
-                    </li>
-                    <li>
-                        <i class="far fa-star"></i>
-                    </li>
-
-                    <li>
-                        tipo
-                    </li>
-                    <li>
-                        <img src="img/img-not-available.png" alt="" />
-                    </li>
-                </ul>
-                <!-- -------------------------- -->
-            </div>
+            <div class="card-list"></div>
         </main>
 
-        <script src="main.js"></script>
         <script id="card-template" type="text/x-handlebars-template">
             <ul class="single-list">
                 <li>
-                    {{title}}
+                    Titolo: {{title}}
                 </li>
                 <li>
-                    {{orTitle}}
+                    Titolo Originale: {{orTitle}}
                 </li>
                 <li>
-                    {{{orLanguage}}}
+                    lang: {{{orLanguage}}}
                 </li>
                 <li>
-                    {{averageVote}}
+                    voto: {{averageVote}}
                 </li>
                 <li>
                     {{{stars}}}
                 </li>
                 <li>
-                    {{type}}
+                    tipo: {{type}}
                 </li>
                 <li>
-                    <img src="{{poster}}" class="not-available" alt="" />
+                    {{actors}}
+                </li>
+                <li class="poster-container">
+                    <img src="{{poster}}" class="img-poster" alt="" />
                 </li>
             </ul>
         </script>
+        <script src="main.js"></script>
     </body>
 </html>
