@@ -104,6 +104,7 @@ $(document).ready(function () {
                 poster: infos.poster_path
                     ? imgUrl + dimImg + infos.poster_path
                     : `img/img-not-available.png`,
+                overview: infos.overview,
 
                 // actors: getActors(infos.id),
             };
@@ -142,16 +143,6 @@ $(document).ready(function () {
     //     });
     // }
 
-    // function seeActors(actorsList) {
-    //     // actorsList.forEach(function (actor) {
-    //     //     console.log(actor.name);
-    //     // });
-    //     console.log(actorsList);
-    //     for (var i = 0; i < 5; i++) {
-    //         console.log(actorsList[i].name);
-    //     }
-    // }
-
     function createFlag(lang) {
         //costruisco una lista di linguaggi preimpostati corrispondenti alle immagini
         var langList = ["it", "en", "fr", "de"];
@@ -163,7 +154,7 @@ $(document).ready(function () {
     }
 
     function createStars(num) {
-        //trasformo il voto da 1 a 10 in un numero da uno a 5 arrotondando per eccesso
+        //trasformo il voto da 1 a 10 in un numero da uno a 5 arrotondando
         var ceilNumber = Math.round(num / 2);
         var starsIcon = "";
         for (var i = 1; i <= 5; i++) {
@@ -181,12 +172,13 @@ $(document).ready(function () {
 
     $(document)
         .on("mouseenter", ".single-list", function () {
+            $(this).find(".overview").show();
+            $(this).toggleClass("over-hide scrolling");
             $(this).find(".poster-container").fadeOut();
         })
         .on("mouseleave", ".single-list", function () {
+            $(this).find(".overview").hide();
+            $(this).toggleClass("scrolling over-hide");
             $(this).find(".poster-container").fadeIn();
         });
-    // $(document).on("mouseenter", ".single-list", function () {
-    //     $(this).hide();
-    // });
 });

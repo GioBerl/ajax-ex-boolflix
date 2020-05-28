@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: rgba(128, 128, 128, 0.397);
+    background-color: #111;
     width: 100%;
     height: 100px;
     /* position: fixed; */
@@ -17,6 +17,26 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+}
+
+.header-left img {
+    height: 50px;
+}
+
+#search-text,
+#search-button {
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+#search-button {
+    background-color: red;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 20px;
 }
 
 .card-list {
@@ -40,7 +60,7 @@ ul {
 
 ul > li:not(:last-child) {
     margin-bottom: 10px;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .poster-container {
@@ -70,4 +90,13 @@ img.flag {
 .img-poster {
     width: 185px;
     height: 278px;
+}
+
+.scrolling {
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.over-hide {
+    overflow: hidden;
 }

@@ -14,10 +14,17 @@
     <body>
         <header>
             <div class="header-left">
-                <h1>BOOLFLIX</h1>
+                <img
+                    src="https://fontmeme.com/permalink/200528/c2afbefb193becb208cc4f7dcf0a14da.png"
+                    alt=""
+                />
             </div>
             <div class="header-right">
-                <input type="text" id="search-text" />
+                <input
+                    type="text"
+                    id="search-text"
+                    placeholder="Film or tv show..."
+                />
                 <button id="search-button">Search</button>
             </div>
         </header>
@@ -29,7 +36,7 @@
         </main>
 
         <script id="card-template" type="text/x-handlebars-template">
-            <ul class="single-list">
+            <ul class="single-list over-hide">
                 <li>
                     Titolo: {{title}}
                 </li>
@@ -48,8 +55,8 @@
                 <li>
                     tipo: {{type}}
                 </li>
-                <li>
-                    {{actors}}
+                <li class="overview">
+                    {{overview}}
                 </li>
                 <li class="poster-container">
                     <img src="{{poster}}" class="img-poster" alt="" />
