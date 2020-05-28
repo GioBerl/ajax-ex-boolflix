@@ -104,7 +104,7 @@ $(document).ready(function () {
                 poster: infos.poster_path
                     ? imgUrl + dimImg + infos.poster_path
                     : `img/img-not-available.png`,
-                overview: infos.overview,
+                overview: infos.overview ? infos.overview : "no overview",
 
                 // actors: getActors(infos.id),
             };
@@ -177,6 +177,7 @@ $(document).ready(function () {
             $(this).find(".poster-container").fadeOut();
         })
         .on("mouseleave", ".single-list", function () {
+            $(this).scrollTop(0);
             $(this).find(".overview").hide();
             $(this).toggleClass("scrolling over-hide");
             $(this).find(".poster-container").fadeIn();
